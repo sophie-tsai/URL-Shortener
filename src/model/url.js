@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const urlSchema = new mongoose.Schema(
   {
     longUrl: {
@@ -10,7 +9,10 @@ const urlSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    timesUsed: Number,
+    timesUsed: {
+      type: Number,
+      default: 0,
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -20,4 +22,4 @@ const urlSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const Url = mongoose.model('url', urlSchema);
+module.exports = mongoose.model('url', urlSchema);
