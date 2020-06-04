@@ -1,0 +1,5 @@
+{
+    "name": "url-shortener",
+    "description": "node.js app that uses express to shorten urls",
+    "repository": "https://github.com/sophie-tsai/url-shortener"
+}
