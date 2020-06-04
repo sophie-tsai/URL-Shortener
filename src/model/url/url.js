@@ -8,6 +8,7 @@ const urlSchema = new mongoose.Schema(
     token: {
       type: String,
       unique: true,
+      // required: true,
     },
     timesUsed: {
       type: Number,
