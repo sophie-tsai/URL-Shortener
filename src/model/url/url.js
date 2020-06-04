@@ -8,7 +8,7 @@ const urlSchema = new mongoose.Schema(
     token: {
       type: String,
       unique: true,
-      // required: true,
+      required: true,
     },
     timesUsed: {
       type: Number,
@@ -22,5 +22,10 @@ const urlSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+urlSchema.virtual('shortUrl').get(function () {
+  const shortUrl = `https://smolify.herokuapp.com/${this.token}`;
+  return shortUrl;
+});
 
 module.exports = mongoose.model('url', urlSchema);

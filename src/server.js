@@ -23,6 +23,9 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 // app.get('/', (req, res) => res.send('Is anybody there?!'));
+// app.get('/', function (req, res) {
+//   res.redirect('https://google.com');
+// });
 
 app.get('/urls', async (req, res) => {
   try {
@@ -43,6 +46,12 @@ app.get('/users/:user/urls', async (req, res) => {
     console.error(error);
     res.status(500).send();
   }
+});
+
+app.get('/:token', async (req, res) => {
+  const token = req.params.token;
+  const docMatch = await Url.findOne({ token: token }).exec();
+  res.redirect(`https://${docMatch.longUrl}`);
 });
 
 app.post('/users', async (req, res) => {
