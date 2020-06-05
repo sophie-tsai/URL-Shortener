@@ -22,10 +22,7 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
-// app.get('/', (req, res) => res.send('Is anybody there?!'));
-// app.get('/', function (req, res) {
-//   res.redirect('https://google.com');
-// });
+app.get('/health', (req, res) => res.status(200).send('Healthy'));
 
 app.get('/urls', async (req, res) => {
   try {

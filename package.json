@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "heroku-local": "heroku local web",
     "start": "node src/server.js",
     "dev": "nodemon --watch src src/server.js"
   },
