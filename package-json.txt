@@ -1,5 +1,5 @@
   
-  This is copied from the old package.json don't worry about it 
+  This is copied from the old package.json
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir dist",

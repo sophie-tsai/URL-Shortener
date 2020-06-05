@@ -1,13 +1,3 @@
-/*
-import express from 'express';
-import { json, urlencoded } from 'body-parser';
-
-import Url from './model/url';
-import cors from 'cors';
-import User from './model/user';
-import { connect } from './connect';
-*/
-
 const express = require('express');
 const { urlencoded, json } = require('body-parser');
 const User = require('./model/user');
@@ -24,7 +14,6 @@ app.use(urlencoded({ extended: true }));
 
 app.get('/health', (req, res) => res.status(200).send('Healthy'));
 
-/*
 app.get('/urls', async (req, res) => {
   try {
     const allUrls = await Url.find({}).lean().exec();
@@ -75,12 +64,11 @@ app.post('/urls', async (req, res) => {
   }
 });
 
-*/
 function start() {
   const PORT = process.env.PORT || 5000;
 
   try {
-    //connect();
+    connect();
 
     app.listen(PORT, () => {
       console.log(`REST API on http://localhost:${PORT}/api`);
@@ -89,5 +77,5 @@ function start() {
     console.error(e);
   }
 }
-//start();
+
 module.exports = start;
