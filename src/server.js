@@ -77,7 +77,7 @@ app.post('/urls', async (req, res) => {
 
 */
 function start() {
-  const PORT = 5000;
+  const PORT = process.env.PORT || 5000;
 
   try {
     //connect();
@@ -89,5 +89,5 @@ function start() {
     console.error(e);
   }
 }
-
-start();
+//start();
+module.exports = start;

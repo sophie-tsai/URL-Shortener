@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "heroku-local": "heroku local web",
-    "start": "node src/server.js",
-    "dev": "nodemon --watch src src/server.js"
+    "start": "node index.js",
+    "dev": "nodemon --watch src index.js"
   },
   "repository": {
     "type": "git",
