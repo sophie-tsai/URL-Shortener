@@ -88,4 +88,4 @@ function start() {
   }
 }
 
-start();
+//start();
