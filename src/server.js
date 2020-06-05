@@ -24,6 +24,7 @@ app.use(urlencoded({ extended: true }));
 
 app.get('/health', (req, res) => res.status(200).send('Healthy'));
 
+/*
 app.get('/urls', async (req, res) => {
   try {
     const allUrls = await Url.find({}).lean().exec();
@@ -74,11 +75,12 @@ app.post('/urls', async (req, res) => {
   }
 });
 
+*/
 function start() {
   const PORT = 5000;
 
   try {
-    connect();
+    //connect();
 
     app.listen(PORT, () => {
       console.log(`REST API on http://localhost:${PORT}/api`);
@@ -88,4 +90,4 @@ function start() {
   }
 }
 
-//start();
+start();
