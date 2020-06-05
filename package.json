@@ -2,13 +2,9 @@
   "name": "url-shortener",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir dist",
-    "dev": "nodemon --exec yarn restart",
-    "restart": "rimraf dist && yarn build && yarn start",
-    "start": "node dist/index.js",
-    "start-gopher": "node src/server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon --watch src src/server.js"
   },
   "repository": {
     "type": "git",

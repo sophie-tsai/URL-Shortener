@@ -1,0 +1,10 @@
+  
+  This is copied from the old package.json don't worry about it 
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "dev": "nodemon --exec yarn restart",
+    "restart": "rimraf dist && yarn build && yarn start",
+    "start-gopher": "node src/server.js",
+    "start": "node dist/index.js"
+  },
