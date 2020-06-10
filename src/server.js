@@ -38,6 +38,18 @@ app.get('/users/:user/urls', async (req, res) => {
   }
 });
 
+// gets specific user information
+app.get('/users/:username', async (req, res) => {
+  const username = req.params.username;
+  try {
+    const user = await User.find({ user: username }).lean().exec();
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send();
+  }
+});
+
 // gets and a redirect specific url with token
 app.get('/:token', async (req, res) => {
   const token = req.params.token;
@@ -73,7 +85,7 @@ app.post('/urls', async (req, res) => {
   }
 });
 
-// deletes user doc
+// deletes user doc and links
 app.delete('/users/:user', async (req, res) => {
   const user = req.params.user;
   try {
@@ -81,6 +93,7 @@ app.delete('/users/:user', async (req, res) => {
     console.log('deleted', userMatch);
     const userUrls = await Url.deleteMany({ user: user });
     console.log('links deleted', userUrls);
+    res.status(200).send('deleted');
   } catch (error) {
     console.error(error);
     res.status(500).send();
@@ -108,6 +121,7 @@ app.put('/users/:user', async (req, res) => {
     userMatch.user = updatedUsername;
     await userMatch.save();
     console.log('updated', userMatch);
+    res.status(200).send('updated');
   } catch (error) {
     console.error(error);
     res.status(500).send();
