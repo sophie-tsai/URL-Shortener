@@ -8,12 +8,12 @@ const generateToken = require('./model/url/utils');
 
 const app = express();
 
-corsOptions = {
-  origin: 'https://sophie-tsai.github.io/Smolify/',
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: 'https://sophie-tsai.github.io/Smolify/',
+//   optionsSuccessStatus: 200,
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
