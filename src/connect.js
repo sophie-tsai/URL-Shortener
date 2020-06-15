@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
-const connect = (opts = {}) => {
-  const url = `mongodb://localhost:27017/url-shortener`;
-  mongoose.connect(url);
+
+const db = process.env.MONGODB_URL;
+
+const connect = async (opts = {}) => {
+  await mongoose.connect(db);
+  mongoose.connect(db);
   mongoose.connection.once('open', () => {
     console.log('Connected to db');
   });
