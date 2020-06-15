@@ -8,7 +8,12 @@ const generateToken = require('./model/url/utils');
 
 const app = express();
 
-app.use(cors());
+corsOptions = {
+  origin: 'https://sophie-tsai.github.io/Smolify/',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
@@ -30,7 +35,7 @@ app.get('/users/:user/urls', async (req, res) => {
   const user = req.params.user;
   try {
     const userUrls = await Url.find({ user: user }).lean().exec();
-    console.log(userUrls.length);
+    // console.log(userUrls.length);
     res.status(200).json(userUrls);
   } catch (error) {
     console.error(error);
@@ -67,6 +72,10 @@ app.post('/users', async (req, res) => {
     res.status(201).json(user.toJSON());
   } catch (error) {
     console.error(error);
+    if (error.code === 11000) {
+      res.status(403).send('username has been taken');
+      return;
+    }
     res.status(500).send();
   }
 });
@@ -77,7 +86,7 @@ app.post('/urls', async (req, res) => {
   urlToBeCreated.token = generateToken();
   try {
     const url = await Url.create(urlToBeCreated);
-    console.log(url.shortUrl);
+
     res.status(201).json(url.toJSON());
   } catch (error) {
     console.error(error);
@@ -92,7 +101,7 @@ app.delete('/users/:user', async (req, res) => {
     const userMatch = await User.findByIdAndDelete(user).exec();
     console.log('deleted', userMatch);
     const userUrls = await Url.deleteMany({ user: user });
-    console.log('links deleted', userUrls);
+
     res.status(200).send('deleted');
   } catch (error) {
     console.error(error);
@@ -106,6 +115,7 @@ app.delete('/urls/:url', async (req, res) => {
   try {
     const urlMatch = await Url.findByIdAndDelete(url).exec();
     console.log('deleted', urlMatch);
+    res.status(200).send('link deleted');
   } catch (error) {
     console.error(error);
     res.status(500).send();
@@ -124,7 +134,7 @@ app.put('/users/:user', async (req, res) => {
     res.status(200).send('updated');
   } catch (error) {
     console.error(error);
-    res.status(500).send();
+    res.status(403).send();
   }
 });
 

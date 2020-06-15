@@ -23,9 +23,4 @@ const urlSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-urlSchema.virtual('shortUrl').get(function () {
-  const shortUrl = `https://smolify.herokuapp.com/${this.token}`;
-  return shortUrl;
-});
-
 module.exports = mongoose.model('url', urlSchema);
